@@ -116,6 +116,7 @@ jobs:
 
       - name: Deploy using Launch config
         run: csdx launch --redeploy-latest
+```
 
 ---
 
