@@ -1,4 +1,4 @@
-name: Deployed to Launch 
+name: Deploy to Launch 
 
 on:
   push:
