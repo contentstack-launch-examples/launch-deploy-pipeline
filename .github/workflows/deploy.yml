@@ -40,11 +40,9 @@ jobs:
             git log -1 --pretty=format:"%s"
 
       - name: Install CLI tools
-        run:
+        run: |
           npm install -g @contentstack/cli
-      
-      - name: Install otplib
-        run: npm install otplib
+          npm install otplib
 
       - name: Verify Contentstack CLI Installation
         run: csdx --version
