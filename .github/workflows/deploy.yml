@@ -39,8 +39,10 @@ jobs:
             echo "Latest Commit Message:"
             git log -1 --pretty=format:"%s"
 
-      - name: Install Contentstack CLI
-        run: npm install -g @contentstack/cli
+      - name: Install CLI tools
+        run: |
+          npm install -g @contentstack/cli
+          npm install otplib
 
       - name: Verify Contentstack CLI Installation
         run: csdx --version
