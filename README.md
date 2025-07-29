@@ -4,7 +4,7 @@ This example demonstrates how to **deploy a file upload project to [Contentstack
 
 ---
 
-## 📦 Prerequisites
+## Prerequisites
 
 Before setting up this CI/CD workflow:
 
@@ -14,20 +14,40 @@ Before setting up this CI/CD workflow:
   - Project source code
   - A valid `package.json` with a `build` script (`npm run build`)
   - `.cs-launch.json` (in the root or a custom path)
+  - The `otplib` package installed (used to generate TOTP tokens for two-factor authentication):
+    ```bash
+    npm install otplib
+    ```
 
 ---
 
-## 🔐 Secrets Setup (Required)
+## Secrets Setup (Required)
 
 To securely authenticate during deployment, add these secrets to your GitHub repository:
 
 1. Navigate to: `GitHub > Your Repo > Settings > Secrets and variables > Actions`
-2. Click **"New repository secret"** and add:
+2. Click **"New repository secret"** and add the following:
 
-| Secret Name     | Value                             |
-|------------------|-----------------------------------|
-| `CSDX_EMAIL`     | Your Contentstack account email   |
-| `CSDX_PASSWORD`  | Your Contentstack account password|
+| Secret Name          | Value                                              |
+|----------------------|----------------------------------------------------|
+| `CSDX_EMAIL`         | Your Contentstack account email                    |
+| `CSDX_PASSWORD`      | Your Contentstack account password                 |
+| `CSDX_TOTP_SECRET`   | Your TOTP secret key for two-factor authentication |
+
+---
+
+### How to Get Your `CSDX_TOTP_SECRET`
+
+To use TOTP-based authentication in your CI/CD pipeline:
+
+1. **Enable Multi-Factor Authentication (MFA)** on your Contentstack account via the website.
+2. **Log out** of your account.
+3. When logging in again, enter your email and password.
+4. You'll be shown a **QR code** and a **secret key**.
+5. **Save the secret key** — this is your `CSDX_TOTP_SECRET`.
+6. Use this secret to generate TOTP codes programmatically.
+
+>  Do **not** share this key. Store it securely as a GitHub secret.
 
 ---
 
@@ -43,13 +63,13 @@ Every time you push changes to the `main` branch:
 
 ---
 
-## 📌 Important
+## Important
 
 - Make sure you **manually deploy once** using `csdx launch` to set up your project on Launch before relying on this workflow.
 - Your `.cs-launch.json` file must exist in the root (or use `--config` to point to it).
-- Store your email and password in GitHub Secrets as `CSDX_EMAIL` and `CSDX_PASSWORD`.
+- Make sure to store all required secrets (`CSDX_EMAIL`, `CSDX_PASSWORD`, `CSDX_TOTP_SECRET`) in GitHub.
 
-After this one-time setup, every push to `main` will **automatically update your Launch project** — no extra steps needed.
+After this one-time setup, every push to `main` will **update your Launch project** — no extra steps needed.
 
 ---
 
