@@ -1,12 +1,12 @@
 {
   "project": {
     "uid": "6a6338574fb9ce2bfe8ea3b5",
-    "name": "launch-deploy-pipeline-main",
+    "name": "launch-deploy-pipeline-mai",
     "projectType": "FILEUPLOAD",
-    "organizationUid": "bltb065b4ba5011f44e",
+    "organizationUid": "blte5c2b61e175773e7",
     "environments": [
       {
-        "uid": "blte5c2b61e175773e7",
+        "uid": "6a6338574fb9ce2bfe8ea3bc",
         "name": "Default",
         "frameworkPreset": "NEXTJS",
         "__typename": "Environment"
