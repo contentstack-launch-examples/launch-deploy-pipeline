@@ -41,7 +41,7 @@ jobs:
 
       - name: Install CLI tools
         run: |
-          npm install -g @contentstack/cli
+          npm install -g @contentstack/cli@2.0.0-beta.29
           npm install otplib
 
       - name: Verify Contentstack CLI Installation
